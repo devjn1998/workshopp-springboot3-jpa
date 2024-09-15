@@ -14,7 +14,7 @@ import com.larvastore.demo.repositories.UserRepository;
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
