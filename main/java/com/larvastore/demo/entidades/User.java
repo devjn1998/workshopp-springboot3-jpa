@@ -17,7 +17,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // não funciona com todas as linguagens de banco de dados.
 	private Long id;
 	private String usuario;
 	private String email;
