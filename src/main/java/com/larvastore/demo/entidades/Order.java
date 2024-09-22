@@ -2,7 +2,9 @@ package com.larvastore.demo.entidades;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.larvastore.demo.entidades.enums.OrderStatus;
@@ -13,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -32,6 +35,9 @@ public class Order implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private User client;
+	
+	@OneToMany(mappedBy = "id.order")
+	private Set<OrderItem> itens = new HashSet<>(); 
 	
 	private Integer orderStatus;
 	
@@ -71,6 +77,10 @@ public class Order implements Serializable {
 		this.client = client;
 	}
 	
+	public Set<OrderItem> getItems() {
+		return itens;
+	}
+	
 
 	public OrderStatus getOrderStatus() {
 		return OrderStatus.valueOf(orderStatus);
@@ -84,6 +94,8 @@ public class Order implements Serializable {
 	public int hashCode() {
 		return Objects.hash(client, id, moment);
 	}
+	
+	
 
 	@Override
 	public boolean equals(Object obj) {
