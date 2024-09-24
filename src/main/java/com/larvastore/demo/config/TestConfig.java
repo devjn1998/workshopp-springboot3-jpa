@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.larvastore.demo.entidades.Category;
 import com.larvastore.demo.entidades.Order;
 import com.larvastore.demo.entidades.OrderItem;
+import com.larvastore.demo.entidades.Payment;
 import com.larvastore.demo.entidades.Product;
 import com.larvastore.demo.entidades.User;
 import com.larvastore.demo.entidades.enums.OrderStatus;
@@ -80,6 +81,11 @@ public class TestConfig implements CommandLineRunner {
 		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 		
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+		
+		Payment pay1 = new Payment(null, Instant.parse("2019-06-20T23:33:07Z"), o1);
+		o1.setPayment(pay1);
+		
+		orderRepository.save(o1);
 		
 		
 		
