@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.larvastore.demo.entidades.enums.OrderStatus;
 
 import jakarta.persistence.Entity;
@@ -37,7 +38,7 @@ public class Order implements Serializable {
 	private User client;
 	
 	@OneToMany(mappedBy = "id.order")
-	private Set<OrderItem> itens = new HashSet<>(); 
+	private Set<OrderItem> items = new HashSet<>(); 
 	
 	private Integer orderStatus;
 	
@@ -78,7 +79,7 @@ public class Order implements Serializable {
 	}
 	
 	public Set<OrderItem> getItems() {
-		return itens;
+		return items;
 	}
 	
 
