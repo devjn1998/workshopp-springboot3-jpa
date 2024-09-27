@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.larvastore.demo.entidades.User;
 import com.larvastore.demo.repositories.UserRepository;
+import com.larvastore.demo.services.exceptions.ResourceNotFoundException;
 
 
 @Service
@@ -23,7 +24,7 @@ public class UserServices {
 
 	public User findById(Long id) {
 		Optional<User> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public User insert(User obj) {
