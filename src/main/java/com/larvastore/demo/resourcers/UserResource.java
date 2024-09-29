@@ -25,23 +25,23 @@ public class UserResource {
 	
 	
 	@Autowired
-	private UserServices services;
+	private UserServices service;
 
 	@GetMapping
 	public ResponseEntity<List<User>> findAll() {
-		List<User> list = services.findAll();
+		List<User> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<User> findById(@PathVariable Long id) {
-		User obj = services.findById(id);
+		User obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
 	public ResponseEntity<User> insert(@RequestBody User obj) {
-		obj = services.insert(obj);
+		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
@@ -50,13 +50,13 @@ public class UserResource {
 
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
-		services.delete(id);
-		return ResponseEntity.noContent().build();
+			service.delete(id);
+			return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<User> update (@PathVariable Long id, @RequestBody User obj){
-		obj = services.update(id, obj);
+		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
 }
