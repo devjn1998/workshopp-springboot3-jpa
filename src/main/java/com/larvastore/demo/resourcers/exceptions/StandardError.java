@@ -65,24 +65,4 @@ public class StandardError implements Serializable {
 	public void setPath(String path) {
 		this.path = path;
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(error, message, path, status, timestamp);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		StandardError other = (StandardError) obj;
-		return Objects.equals(error, other.error) && Objects.equals(message, other.message)
-				&& Objects.equals(path, other.path) && Objects.equals(status, other.status)
-				&& Objects.equals(timestamp, other.timestamp);
-	}
-	
 }
